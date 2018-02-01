@@ -1,61 +1,81 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
-    private ArrayList<String> ticketTypeList;
-    private ArrayList<Record> records;
+    private List<Record> records = new ArrayList<>();
 
-    public Application() {
-        ticketTypeList = new ArrayList<>();
-        records = new ArrayList<>();
-    }
-
-    public void initTicketTypeList() {
-        ticketTypeList.add("S");
-        ticketTypeList.add("D");
-        ticketTypeList.add("W");
-        ticketTypeList.add("M");
-        ticketTypeList.add("Y");
-    }
-
-    public void generateRecords() {
-        for (int i = 0;i < Configuration.instance.maximumNumberOfRecords;i++) {
-            int randomWeekDay = Configuration.instance.randomNumberGenerator.nextInt(1,7);
-            String randomTicketType = ticketTypeList.get(Configuration.instance.randomNumberGenerator.nextInt(0,ticketTypeList.size()-1));
-            int randomSource = Configuration.instance.randomNumberGenerator.nextInt(1,100);
-
-            int randomDestination;
-            do {
-                randomDestination = Configuration.instance.randomNumberGenerator.nextInt(1,100);
-            } while (randomDestination == randomSource);
-
-            boolean randomIsOffPeak = Configuration.instance.randomNumberGenerator.nextBoolean();
-
-            Record record = new Record(i+1,randomWeekDay,randomTicketType,randomSource,randomDestination,randomIsOffPeak,Configuration.instance.randomNumberGenerator.nextInt(0,3));
-            records.add(record);
-        }
-    }
-
-    public void generateToCSVFile() {
+    public List<Record> loadRecords() {
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(Configuration.instance.dataPath + "records.csv")));
-
-            for (int i = 0;i < Configuration.instance.maximumNumberOfRecords;i++)
-                bufferedWriter.write(records.get(i).toString() + Configuration.instance.lineSeparator);
-
-            bufferedWriter.close();
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+    }
+
+    // count
+    public void executeSQL01() {
+    }
+
+    // count, where
+    public void executeSQL02() {
+    }
+
+    // count, where, in
+    public void executeSQL03() {
+    }
+
+    // count, where, not in
+    public void executeSQL04() {
+    }
+
+    // id, where, in, order by desc limit
+    public void executeSQL05() {
+    }
+
+    // id, where, in, order by desc, order by asc
+    public void executeSQL06() {
+    }
+
+    // count, group by
+    public void executeSQL07() {
+    }
+
+    // count, where, group by
+    public void executeSQL08() {
+    }
+
+    // count, where, in, group by
+    public void executeSQL09() {
+    }
+
+    // count, where, not in, group by
+    public void executeSQL10() {
+    }
+
+    // sum, where, not in, in, group by
+    public void executeSQL11() {
+    }
+
+    // avg, where, in, in, group by
+    public void executeSQL12() {
+    }
+
+    public void execute() {
+        loadRecords();
+        executeSQL01();
+        executeSQL02();
+        executeSQL03();
+        executeSQL04();
+        executeSQL05();
+        executeSQL06();
+        executeSQL07();
+        executeSQL08();
+        executeSQL09();
+        executeSQL10();
+        executeSQL11();
+        executeSQL12();
     }
 
     public static void main(String... args) {
-        // Application application = new Application();
-        // application.initTicketTypeList();
-        // application.generateRecords();
-        // application.generateToCSVFile();
+
     }
 }
