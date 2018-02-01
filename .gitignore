@@ -2,9 +2,11 @@
 .classpath
 .project
 .settings/
+
  
 # Intellij
 .idea/
+.build/
 *.iml
 *.iws
 *.xml
