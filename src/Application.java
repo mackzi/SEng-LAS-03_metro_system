@@ -29,21 +29,37 @@ public class Application {
 
     // count
     public long executeSQL01() {
-        long count = records.stream().count();
-        System.out.println(count);
+        long count = records.stream()
+                            .count();
+        System.out.println("SQL 1: " + count);
         return count;
     }
 
     // count, where
     public long executeSQL02() {
-        long count = 0;
-        System.out.println(count);
+        long count = records.stream()
+                            .filter(x -> x.getWeekDay() <= 5 &&
+                                         x.getSource() >= 50 &&
+                                         x.getSource() <= 75 &&
+                                         x.getDestination() >= 25 &&
+                                         x.getDestination() <= 30)
+                            .count();
+        System.out.println("SQL 2: " + count);
         return count;
     }
 
     // count, where, in
     public long executeSQL03() {
-        return 0;
+        long count = records.stream()
+                            .filter(x -> (x.getTicketType().equals("W") || x.getTicketType().equals("M") || x.getTicketType().equals("Y")) &&
+                                    x.getSource() >= 25 &&
+                                    x.getSource() <= 50 &&
+                                    x.getDestination() >= 50 &&
+                                    x.getDestination() <= 75 &&
+                                    !x.isOffPeak())
+                            .count();
+        System.out.println("SQL 3: " + count);
+        return count;
     }
 
     // count, where, not in
