@@ -1,0 +1,43 @@
+01) SELECT COUNT(*) FROM data
+
+02) SELECT COUNT(*) FROM data
+    WHERE weekDay <= 5 AND source >= 50 AND source <= 75 AND destination >= 25 AND destination <= 30
+	
+03) SELECT COUNT(*) FROM data
+    WHERE ticketType IN ('W','M','Y') AND source >= 25 AND source <= 50 AND destination >= 50 AND destination <= 75 AND isOffPeak = 'true'
+	
+04) SELECT COUNT(*) FROM data
+    WHERE ticketType NOT IN ('M','Y') AND source >= 5 AND source <= 20 AND destination >= 5 AND destination <= 20 AND isOffPeak = 'false'
+	
+05) SELECT id FROM data
+    WHERE weekDay IN (1,2) AND ticketType = 'S' AND source = 10 AND destination <= 50
+	ORDER BY destination
+	DESC LIMIT 3
+	
+06) SELECT id FROM data
+    WHERE weekDay = 7 AND ticketType = 'S' AND source IN (1,3) AND destination IN (1,3,5) AND isOffPeak = 'true'
+	ORDER BY source DESC,destination
+	
+07) SELECT COUNT(*),isOffPeak FROM data GROUP BY isOffPeak
+
+08) SELECT COUNT(*),weekDay FROM data
+    WHERE source IN (1,3) AND destination IN (1,3,5) AND isOffPeak = 'true'
+    GROUP BY weekDay
+
+09) SELECT COUNT(*),ticketType FROM data
+    WHERE weekDay <= 5 AND source >= 5 AND source <= 20 AND destination >= 5 AND destination <= 20
+	GROUP BY ticketType
+	
+10) SELECT COUNT(*),destination FROM data
+    WHERE weekDay NOT IN (1,5,6,7) AND ticketType = 'Y' AND source = 15 AND destination >= 20
+	AND destination <= 25 AND isOffPeak = 'true'
+	GROUP BY destination
+	
+11) SELECT COUNT(*),ticketType FROM data
+    WHERE weekDay NOT IN (1,5,6,7) AND ticketType IN ('W','M') AND source = 5 AND destination >= 5
+	AND destination <= 10 AND isOffPeak = 'false'
+	GROUP BY ticketType
+	
+12) SELECT COUNT(*),ticketType FROM data
+    WHERE weekDay = 7 AND source IN (1,5,10,15,90,95,100) AND destination IN (1,5,10,15,20,25)
+	GROUP BY ticketType

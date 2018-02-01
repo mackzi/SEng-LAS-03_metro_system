@@ -1,0 +1,91 @@
+--- query 01 (count)
+SELECT COUNT(*) FROM data
+1000000  
+
+--- query 02 (count, where)
+SELECT COUNT(*) FROM data WHERE weekDay <= 5 AND source >= 50 AND source <= 75
+AND destination >= 25 AND destination <= 30
+11135  
+
+--- query 03
+SELECT COUNT(*) FROM data WHERE ticketType IN ('W','M','Y') AND source >= 25
+AND source <= 50 AND destination >= 50 AND destination <= 75 AND isOffPeak = 'true'
+20634  
+
+--- query 04 (count, where, not in)
+SELECT COUNT(*) FROM data WHERE ticketType NOT IN ('M','Y') AND source >= 5
+AND source <= 20 AND destination >= 5 AND destination <= 20 AND isOffPeak = 'false'
+7187  
+
+--- query 05 (id, where, in, order by desc limit)
+SELECT id FROM data WHERE weekDay IN (1,2) AND ticketType = 'S' AND source = 10
+AND destination <= 50 ORDER BY destination DESC LIMIT 3
+92607  
+83512  
+642154  
+
+--- query 06 (id, where, in, order by desc, order by asc)
+SELECT id FROM data WHERE weekDay = 7 AND ticketType = 'S' AND source IN (1,3)
+AND destination IN (1,3,5) AND isOffPeak = 'true' ORDER BY source DESC,destination
+360163  
+422231  
+926865  
+618665  
+396282  
+873231  
+382998  
+
+--- query 07 (// count, group by)
+SELECT isOffPeak,COUNT(*) FROM data GROUP BY isOffPeak
+false 499551  
+true 500449  
+
+--- query 08 (count, where, group by)
+SELECT ticketType,COUNT(*) FROM data WHERE weekDay <= 5 AND source >= 5
+AND source <= 20 AND destination >= 5 AND destination <= 20 GROUP BY ticketType
+M 3464  
+S 3454  
+W 3401  
+Y 3567  
+D 3413  
+
+--- query 09 (count, where, in, group by)
+SELECT weekDay,COUNT(*) FROM data WHERE source = 3 AND destination IN (1,3,5)
+AND isOffPeak = 'true' GROUP BY weekDay
+3 15  
+5 14  
+2 14  
+7 16  
+6 21  
+1 19  
+4 11  
+
+--- query 10 (count, where, not in, group by)
+SELECT destination,COUNT(*) FROM data WHERE weekDay NOT IN (1,5,6,7)
+AND ticketType = 'Y' AND source = 15 AND destination >= 20
+AND destination <= 25 AND isOffPeak = 'true' GROUP BY destination
+24 2  
+23 4  
+20 5  
+21 1  
+25 1  
+22 2  
+
+--- query 11 (sum, where, not in, in, group by)
+SELECT ticketType,SUM(numberOfRegisteredChildren) FROM data
+WHERE weekDay NOT IN (1,5,6,7) AND ticketType IN ('W','M') AND source = 5
+AND destination >= 5 AND destination <= 10 AND isOffPeak = 'false'
+GROUP BY ticketType
+M 37  
+W 35  
+
+--- query 12 (avg, where, in, in, group by)
+SELECT ticketType,AVG(numberOfRegisteredChildren) FROM data WHERE weekDay = 7
+AND source IN (1,5,10,15,90,95,100) AND destination IN (1,5,10,15,20,25)
+GROUP BY ticketType
+D 1  
+M 1  
+Y 1  
+S 1  
+W 1  
+

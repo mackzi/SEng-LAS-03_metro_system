@@ -1,0 +1,8 @@
+--- MetroSystem
+
+id
+weekDay (1,2,3,4,5,6,7)
+ticketType (S,D,W,M,Y)
+source (1-100)
+destination (1-100)
+isOffPeak (true,false)
