@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
     private List<Record> records = new ArrayList<>();
@@ -77,16 +76,21 @@ public class Application {
     }
 
     // id, where, in, order by desc limit
-    public List<Long> executeSQL05() {
-/*
-        records.stream()
+    public List<Integer> executeSQL05() {
+        Comparator<Record> descendingComparator = (Record rec1, Record rec2) -> (rec2.getDestination() - rec1.getDestination());
+        Collections.sort(records, descendingComparator);
+
+        List<Integer> result = records.stream()
                 .filter(x -> (x.getWeekDay() == 1) || (x.getWeekDay() == 2) &&
                         x.getTicketType().equals("S") &&
                         x.getSource() == 10 &&
                         x.getDestination() <= 50)
+                .limit(3)
+                .map(x -> x.getId()).collect(Collectors.toList());
 
-             */
-        return null;
+        System.out.println(result);
+
+        return result;
     }
 
     // id, where, in, order by desc, order by asc
