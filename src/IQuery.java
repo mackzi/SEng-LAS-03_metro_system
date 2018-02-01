@@ -6,8 +6,8 @@ public interface IQuery {
     long executeSQL02();
     long executeSQL03();
     long executeSQL04();
-    List<Long> executeSQL05();
-    List<Long> executeSQL06();
+    List<Integer> executeSQL05();
+    List<Integer> executeSQL06();
     Map<Boolean, Long> executeSQL07();
     Map<String, Long> executeSQL08();
     Map<Long, Long> executeSQL09();

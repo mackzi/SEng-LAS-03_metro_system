@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Application {
+public class Application implements IQuery{
     private List<Record> records = new ArrayList<>();
 
     public List<Record> loadRecords() {
@@ -92,14 +92,30 @@ public class Application {
 
         //records.stream().filter(x -> x.getId() == 24810 || x.getId() == 79881 || x.getId() == 83512).map(x-> x.getDestination()).forEach(System.out::println);
 
-        System.out.println(result);
-
+        System.out.println("SQL 5: " + result);
         return result;
     }
 
     // id, where, in, order by desc, order by asc
-    public List<Long> executeSQL06() {
-        return null;
+    public List<Integer> executeSQL06() {
+        //Comparator<Record> ascendingComparator = (Record rec1, Record rec2) -> rec1.getDestination() - rec2.getDestination();
+        Comparator<Record> ascendingComparator = Comparator.comparingInt(Record::getDestination);
+        Comparator<Record> descendingComparator = (Record rec1, Record rec2) -> rec2.getSource() - rec1.getSource();
+        Collections.sort(records, ascendingComparator);
+        Collections.sort(records, descendingComparator);
+
+
+        List<Integer> result = records.stream()
+                .filter(x -> x.getWeekDay() == 7 &&
+                        x.getTicketType().equals("S") &&
+                        (x.getSource() == 1 || x.getSource() == 3) &&
+                        (x.getDestination() == 1 || x.getDestination() == 3 || x.getDestination() == 5) &&
+                        x.isOffPeak())
+                .map(x -> x.getId())
+                .collect(Collectors.toList());
+
+        System.out.println("SQL 6: " + result);
+        return result;
     }
 
     // count, group by
