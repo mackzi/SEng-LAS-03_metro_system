@@ -78,6 +78,14 @@ public class Application {
 
     // id, where, in, order by desc limit
     public List<Long> executeSQL05() {
+/*
+        records.stream()
+                .filter(x -> (x.getWeekDay() == 1) || (x.getWeekDay() == 2) &&
+                        x.getTicketType().equals("S") &&
+                        x.getSource() == 10 &&
+                        x.getDestination() <= 50)
+
+             */
         return null;
     }
 

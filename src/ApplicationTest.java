@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class ApplicationTest {
 
     Application application = new Application();
-    
+
     {
         List<Record> records = application.loadRecords();
     }
