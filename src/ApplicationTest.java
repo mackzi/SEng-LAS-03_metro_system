@@ -66,8 +66,8 @@ public class ApplicationTest {
     public void doTest07() {
         Map<Boolean, Long> test07 = new TreeMap<>();
 
-        test07.put(false, (long)499551);
-        test07.put(true, (long)500449);
+        test07.put(false, 499551L);
+        test07.put(true, 500449L);
 
         assertEquals(test07, application.executeSQL07());
     }
@@ -76,40 +76,40 @@ public class ApplicationTest {
     public void doTest08() {
         Map<String, Long> test08 = new TreeMap<>();
 
-        test08.put("M", (long)3464);
-        test08.put("S", (long)3454);
-        test08.put("W", (long)3401);
-        test08.put("Y", (long)3567);
-        test08.put("D", (long)4313);
+        test08.put("M", 3464L);
+        test08.put("S", 3454L);
+        test08.put("W", 3401L);
+        test08.put("Y", 3567L);
+        test08.put("D", 4313L);
 
         assertEquals(test08, application.executeSQL08());
     }
 
     @Test
     public void doTest09() {
-        Map<Long, Long> test09 = new TreeMap<>();
+        Map<Integer, Long> test09 = new TreeMap<>();
 
-        test09.put((long)3, (long)15);
-        test09.put((long)5, (long)14);
-        test09.put((long)2, (long)14);
-        test09.put((long)7, (long)16);
-        test09.put((long)6, (long)21);
-        test09.put((long)1, (long)19);
-        test09.put((long)4, (long)11);
+        test09.put(3, 15L);
+        test09.put(5, 14L);
+        test09.put(2, 14L);
+        test09.put(7, 16L);
+        test09.put(6, 21L);
+        test09.put(1, 19L);
+        test09.put(4, 11L);
 
         assertEquals(test09, application.executeSQL09());
     }
 
     @Test
     public void doTest10() {
-        Map<Long, Long> test10 = new TreeMap<>();
+        Map<Integer, Long> test10 = new TreeMap<>();
 
-        test10.put((long)24, (long)2);
-        test10.put((long)23, (long)4);
-        test10.put((long)20, (long)5);
-        test10.put((long)21, (long)1);
-        test10.put((long)25, (long)1);
-        test10.put((long)22, (long)2);
+        test10.put(24, 2L);
+        test10.put(23, 4L);
+        test10.put(20, 5L);
+        test10.put(21, 1L);
+        test10.put(25, 1L);
+        test10.put(22, 2L);
 
         assertEquals(test10, application.executeSQL10());
     }
@@ -118,8 +118,8 @@ public class ApplicationTest {
     public void doTest11() {
         Map<String, Long> test11 = new TreeMap<>();
 
-        test11.put("M", (long)37);
-        test11.put("W", (long)35);
+        test11.put("M", 37L);
+        test11.put("W", 35L);
 
         assertEquals(test11, application.executeSQL11());
     }
@@ -128,11 +128,11 @@ public class ApplicationTest {
     public void doTest12() {
         Map<String, Long> test12 = new TreeMap<>();
 
-        test12.put("D", (long)1);
-        test12.put("M", (long)1);
-        test12.put("Y", (long)1);
-        test12.put("S", (long)1);
-        test12.put("W", (long)1);
+        test12.put("D", 1L);
+        test12.put("M", 1L);
+        test12.put("Y", 1L);
+        test12.put("S", 1L);
+        test12.put("W", 1L);
 
 
         assertEquals(test12, application.executeSQL12());
