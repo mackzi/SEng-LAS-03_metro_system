@@ -56,7 +56,7 @@ public class Application {
                                     x.getSource() <= 50 &&
                                     x.getDestination() >= 50 &&
                                     x.getDestination() <= 75 &&
-                                    !x.isOffPeak())
+                                    x.isOffPeak())
                             .count();
         System.out.println("SQL 3: " + count);
         return count;
