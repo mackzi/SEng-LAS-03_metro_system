@@ -37,13 +37,13 @@ public class ApplicationTest {
 
     @Test
     public void doTest05() {
-        long long1 = 92607;
-        long long2 = 83512;
-        long long3 = 642154;
+        int int1 = 92607;
+        int int2 = 83512;
+        int int3 = 642154;
 
-        assertTrue(application.executeSQL05().contains(long1));
-        assertTrue(application.executeSQL05().contains(long2));
-        assertTrue(application.executeSQL05().contains(long3));
+        assertTrue(application.executeSQL05().contains(int1));
+        assertTrue(application.executeSQL05().contains(int2));
+        assertTrue(application.executeSQL05().contains(int3));
     }
 
     @Test
