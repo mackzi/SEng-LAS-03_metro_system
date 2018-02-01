@@ -53,21 +53,13 @@ public class ApplicationTest {
 
     @Test
     public void doTest06() {
-        long long1 = 360163;
-        long long2 = 422231;
-        long long3 = 926865;
-        long long4 = 618665;
-        long long5 = 396282;
-        long long6 = 873231;
-        long long7 = 382998;
-
-        assertTrue(application.executeSQL06().contains(long1));
-        assertTrue(application.executeSQL06().contains(long2));
-        assertTrue(application.executeSQL06().contains(long3));
-        assertTrue(application.executeSQL06().contains(long4));
-        assertTrue(application.executeSQL06().contains(long5));
-        assertTrue(application.executeSQL06().contains(long6));
-        assertTrue(application.executeSQL06().contains(long7));
+        assertTrue(application.executeSQL06().contains(360163));
+        assertTrue(application.executeSQL06().contains(422231));
+        assertTrue(application.executeSQL06().contains(926865));
+        assertTrue(application.executeSQL06().contains(618665));
+        assertTrue(application.executeSQL06().contains(396282));
+        assertTrue(application.executeSQL06().contains(873231));
+        assertTrue(application.executeSQL06().contains(382998));
     }
 
     @Test
