@@ -64,7 +64,16 @@ public class Application {
 
     // count, where, not in
     public long executeSQL04() {
-        return 0;
+        long count = records.stream()
+                            .filter(x -> (!x.getTicketType().equals("M") && !x.getTicketType().equals("Y")) &&
+                                    x.getSource() >= 5 &&
+                                    x.getSource() <= 20 &&
+                                    x.getDestination() >= 5 &&
+                                    x.getDestination() <= 20 &&
+                                    !x.isOffPeak())
+                            .count();
+        System.out.println("SQL 4: " + count);
+        return count;
     }
 
     // id, where, in, order by desc limit
