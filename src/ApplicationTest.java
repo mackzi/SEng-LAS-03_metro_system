@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -76,11 +77,11 @@ public class ApplicationTest {
     public void doTest08() {
         Map<String, Long> test08 = new TreeMap<>();
 
-        test08.put("M", 3464L);
         test08.put("S", 3454L);
+        test08.put("D", 3413L);
         test08.put("W", 3401L);
         test08.put("Y", 3567L);
-        test08.put("D", 4313L);
+        test08.put("M", 3464L);
 
         assertEquals(test08, application.executeSQL08());
     }
@@ -133,7 +134,6 @@ public class ApplicationTest {
         test12.put("Y", 1L);
         test12.put("S", 1L);
         test12.put("W", 1L);
-
 
         assertEquals(test12, application.executeSQL12());
     }
