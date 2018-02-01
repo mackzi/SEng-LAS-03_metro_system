@@ -77,16 +77,20 @@ public class Application {
 
     // id, where, in, order by desc limit
     public List<Integer> executeSQL05() {
-        Comparator<Record> descendingComparator = (Record rec1, Record rec2) -> (rec2.getDestination() - rec1.getDestination());
+        Comparator<Record> descendingComparator = (Record rec1, Record rec2) -> rec2.getDestination() - rec1.getDestination();
         Collections.sort(records, descendingComparator);
 
         List<Integer> result = records.stream()
-                .filter(x -> (x.getWeekDay() == 1) || (x.getWeekDay() == 2) &&
+                .filter(x -> ((x.getWeekDay() == 1) || (x.getWeekDay() == 2)) &&
                         x.getTicketType().equals("S") &&
                         x.getSource() == 10 &&
                         x.getDestination() <= 50)
+
+                .map(x -> x.getId())
                 .limit(3)
-                .map(x -> x.getId()).collect(Collectors.toList());
+                .collect(Collectors.toList());
+
+        //records.stream().filter(x -> x.getId() == 24810 || x.getId() == 79881 || x.getId() == 83512).map(x-> x.getDestination()).forEach(System.out::println);
 
         System.out.println(result);
 
