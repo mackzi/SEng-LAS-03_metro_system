@@ -10,8 +10,8 @@ public interface IQuery {
     List<Integer> executeSQL06();
     Map<Boolean, Long> executeSQL07();
     Map<String, Long> executeSQL08();
-    Map<Long, Long> executeSQL09();
-    Map<Long, Long> executeSQL10();
+    Map<Integer, Long> executeSQL09();
+    Map<Integer, Long> executeSQL10();
     Map<String, Long> executeSQL11();
     Map<String, Long> executeSQL12();
 }

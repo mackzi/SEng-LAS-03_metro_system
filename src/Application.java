@@ -1,6 +1,11 @@
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.LongFunction;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Application implements IQuery{
@@ -111,7 +116,7 @@ public class Application implements IQuery{
                         (x.getSource() == 1 || x.getSource() == 3) &&
                         (x.getDestination() == 1 || x.getDestination() == 3 || x.getDestination() == 5) &&
                         x.isOffPeak())
-                .map(x -> x.getId())
+                .map(Record::getId)
                 .collect(Collectors.toList());
 
         System.out.println("SQL 6: " + result);
@@ -120,32 +125,90 @@ public class Application implements IQuery{
 
     // count, group by
     public Map<Boolean, Long> executeSQL07() {
-        return null;
+
+        Map<Boolean,Long> result = records.stream().collect(Collectors.partitioningBy(Record::isOffPeak,Collectors.counting()));
+
+        System.out.println("SQL 7: " + result);
+        return result;
     }
 
     // count, where, group by
     public Map<String, Long> executeSQL08() {
-        return null;
+
+        Map<String, Long> result = records.stream()
+                .filter(x -> x.getWeekDay() <= 5 &&
+                        x.getSource() >= 5 &&
+                        x.getSource() <= 20 &&
+                        x.getDestination() >=5 &&
+                        x.getDestination() <= 20)
+                .collect(Collectors.groupingBy(Record::getTicketType, Collectors.counting()));
+
+        System.out.println("SQL 8: " + result);
+        return result;
     }
 
     // count, where, in, group by
-    public Map<Long, Long> executeSQL09() {
-        return null;
+    public Map<Integer, Long> executeSQL09() {
+        Map<Integer, Long> result = records.stream()
+                .filter(x -> x.getSource() == 3 &&
+                        (x.getDestination() == 1 || x.getDestination() == 3 || x.getDestination() == 5) &&
+                        x.isOffPeak())
+                .collect(Collectors.groupingBy(Record::getWeekDay, Collectors.counting()));
+
+        System.out.println("SQL 9: " + result);
+        return result;
     }
 
     // count, where, not in, group by
-    public Map<Long, Long> executeSQL10() {
-        return null;
+    public Map<Integer, Long> executeSQL10() {
+
+        Map<Integer, Long> result = records.stream()
+                .filter(x -> !(x.getWeekDay() == 1 || x.getWeekDay() == 5 || x.getWeekDay() == 6 || x.getWeekDay() == 7) &&
+                        x.getTicketType().equals("Y") &&
+                        x.getSource() == 15 &&
+                        x.getDestination() >= 20 &&
+                        x.getDestination() <= 25 &&
+                        x.isOffPeak())
+                .collect(Collectors.groupingBy(Record::getDestination, Collectors.counting()));
+
+        System.out.println("SQL 10: " + result);
+        return result;
     }
 
     // sum, where, not in, in, group by
     public Map<String, Long> executeSQL11() {
-        return null;
+
+        Map<String, Long> result = records.stream()
+                .filter(x -> !(x.getWeekDay() == 1 || x.getWeekDay() == 5 || x.getWeekDay() == 6 || x.getWeekDay() == 7) &&
+                        (x.getTicketType().equals("W") || x.getTicketType().equals("M")) &&
+                        x.getSource() == 5 &&
+                        x.getDestination() >= 5 &&
+                        x.getDestination() <= 10 &&
+                        !x.isOffPeak())
+                .collect(Collectors.groupingBy(Record::getTicketType, Collectors.summingLong(Record::getNumberOfRegisteredChildren)));
+
+        System.out.println("SQL 11: " + result);
+        return result;
     }
 
     // avg, where, in, in, group by
     public Map<String, Long> executeSQL12() {
-        return null;
+
+        Map<String, Double> map = records.stream().filter(
+                x -> x.getWeekDay() == 7 &&
+                        (x.getSource() == 1 || x.getSource() == 5 || x.getSource() == 15 || x.getSource() == 90 || x.getSource() == 95 || x.getSource() == 100) &&
+                        (x.getDestination() == 1 || x.getDestination() == 5 || x.getDestination() == 10 || x.getDestination() == 15 || x.getDestination() == 20 || x.getDestination() == 25))
+                .collect(Collectors.groupingBy(Record::getTicketType,
+                        Collectors.averagingInt(Record::getNumberOfRegisteredChildren)
+                ));
+
+        Map<String, Long> result = new TreeMap<>();
+        for (Map.Entry<String, Double> i: map.entrySet()) {
+            result.put(i.getKey(), (long)(double) i.getValue());
+        }
+
+        System.out.println("SQL 12: " + result);
+        return result;
     }
 
     public void execute() {
