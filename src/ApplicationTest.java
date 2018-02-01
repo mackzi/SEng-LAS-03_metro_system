@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,6 +10,10 @@ import static org.junit.Assert.assertTrue;
 public class ApplicationTest {
 
     Application application = new Application();
+    
+    {
+        List<Record> records = application.loadRecords();
+    }
 
     @Test
     public void doTest01() {
