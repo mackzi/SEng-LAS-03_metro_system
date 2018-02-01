@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private List<Record> records = new ArrayList<>();
@@ -27,51 +28,67 @@ public class Application {
     }
 
     // count
-    public void executeSQL01() {
+    public long executeSQL01() {
+        long count = records.stream().count();
+        System.out.println(count);
+        return count;
     }
 
     // count, where
-    public void executeSQL02() {
+    public long executeSQL02() {
+        long count = 0;
+        System.out.println(count);
+        return count;
     }
 
     // count, where, in
-    public void executeSQL03() {
+    public long executeSQL03() {
+        return 0;
     }
 
     // count, where, not in
-    public void executeSQL04() {
+    public long executeSQL04() {
+        return 0;
     }
 
     // id, where, in, order by desc limit
-    public void executeSQL05() {
+    public List<Long> executeSQL05() {
+        return null;
     }
 
     // id, where, in, order by desc, order by asc
-    public void executeSQL06() {
+    public List<Long> executeSQL06() {
+        return null;
     }
 
     // count, group by
-    public void executeSQL07() {
+    public Map<Boolean, Long> executeSQL07() {
+        return null;
     }
 
     // count, where, group by
-    public void executeSQL08() {
+    public Map<String, Long> executeSQL08() {
+        return null;
     }
 
     // count, where, in, group by
-    public void executeSQL09() {
+    public Map<Long, Long> executeSQL09() {
+        return null;
     }
 
     // count, where, not in, group by
-    public void executeSQL10() {
+    public Map<Long, Long> executeSQL10() {
+        return null;
     }
 
     // sum, where, not in, in, group by
-    public void executeSQL11() {
+    public Map<String, Long> executeSQL11() {
+        return null;
     }
 
     // avg, where, in, in, group by
-    public void executeSQL12() {
+    public Map<String, Long> executeSQL12() {
+        return null;
     }
 
     public void execute() {
