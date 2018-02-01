@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,9 +8,22 @@ public class Application {
 
     public List<Record> loadRecords() {
         try {
+            BufferedReader br = new BufferedReader(new FileReader(Configuration.instance.dataPath+"records.csv"));
+            String read;
+            while((read = br.readLine()) != null) {
+                String[] temp = read.split(";");
+                records.add(new Record(Integer.parseInt(temp[0]),
+                        Integer.parseInt(temp[1]),
+                        temp[2],
+                        Integer.parseInt(temp[3]),
+                        Integer.parseInt(temp[4]),
+                        Boolean.parseBoolean(temp[5]),
+                        Integer.parseInt(temp[6])));
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     // count
@@ -76,6 +91,7 @@ public class Application {
     }
 
     public static void main(String... args) {
-
+        Application application = new Application();
+        application.execute();
     }
 }

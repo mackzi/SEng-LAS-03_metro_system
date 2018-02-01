@@ -4,6 +4,35 @@ public class Record {
     private String ticketType;
     private int source;
     private int destination;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getWeekDay() {
+        return weekDay;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public int getDestination() {
+        return destination;
+    }
+
+    public boolean isOffPeak() {
+        return isOffPeak;
+    }
+
+    public int getNumberOfRegisteredChildren() {
+        return numberOfRegisteredChildren;
+    }
+
     private boolean isOffPeak;
     private int numberOfRegisteredChildren;
 
