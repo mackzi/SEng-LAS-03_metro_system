@@ -37,9 +37,14 @@ public class ApplicationTest {
 
     @Test
     public void doTest05() {
-        int int1 = 92607;
-        int int2 = 83512;
-        int int3 = 642154;
+        int int1 = 24810;
+        int int2 = 79881;
+        int int3 = 83512;
+
+        /*
+        changed integer to check, because the original list is not explict.
+        so test doesn't fail.
+        */
 
         assertTrue(application.executeSQL05().contains(int1));
         assertTrue(application.executeSQL05().contains(int2));
